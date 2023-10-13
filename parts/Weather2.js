@@ -3,15 +3,12 @@ import propTypes from "prop-types";
 import { StyleSheet, Text, View } from 'react-native';
 import { MaterialCommunityIcons} from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
-//import { weatherOptions2 } from './Options.js';
-
 // Icons
-//console.log( weatherOptions2 )
 
 const weatherOptions = {
     Rain:{
         iconName:'weather-lightning-rainy',
-        gradient:["#373b44","#4286f4" ]
+        gradient:["#373b44","#4286f4"]
     },
     Snow:{
         iconName:'weather-snowy',
@@ -24,7 +21,7 @@ const weatherOptions = {
     Drizzle:{
         iconName:'md-rainy-outline',
         gradient:['#4c669f', '#3b5998', '#192f6a']
-        
+
     },
     Mist:{
         iconName:'md-rainy-outline',
@@ -61,70 +58,38 @@ const weatherOptions = {
 
 }
 
+const condition = "Rain";
 
-//export default function Weather ({temp, feels_like, temp_min, temp_max, condition, name, description}){
-export default function Weather ({dayData}){
+export default function Weather2 ({dayData}){
 
-const {data:  {main: {temp, feels_like, temp_min, temp_max}, sys:{sunrise, sunset}, weather, name}} = dayData.dayData;
-const condition = weather[0].main;
-const description = weather[0].description;
+console.log(dayData.dayData)
+const {data:  {main: {temp, feels_like, temp_min, temp_max}, sys:{sunrise, sunset}, weather, name}} = dayData.dayData
+console.log("dayData" + temp)
+
 
     return (
-        <LinearGradient
+      <LinearGradient
 
        colors={weatherOptions[condition].gradient}
 
         style={styles.container}>
           
                 <View style={styles.block}>  
-                
-                    <MaterialCommunityIcons name={weatherOptions[condition].iconName} size={80} color="white" />
-                    <Text style={styles.temp}>  
-                        {temp}
-                        {'\u00b0'}
-                       
-                    
-                    </Text>
-                    <Text style={styles.temp_like}>
-                        feels like
-                        {feels_like}
-                    </Text>
-                </View>
-                <View>
-                    <Text>
-                        Min: {temp_min}{'\u00b0'}  Max: {temp_max}{'\u00b0'}
-                    </Text>
-                </View>
-                <View style={styles.name}>
-                        <Text style={styles.nameText}>
-                            {name}
-                        </Text>
-                </View>
-                <View style={styles.info}>
 
                     
-                    <View style={styles.description}>
-                        <Text style={styles.descriptionText}>
-                            {description}
-                        </Text>
-                    </View>
-                    <Text style={styles.temp}>
-                        {condition}
-                    
-                    </Text>
-                    
-                    
+                      <Text style={styles.temp}>
+                            temp
+
+                      </Text>
                 </View>
-            
-           
-        </LinearGradient>
-    
+
+      </LinearGradient>
 
     );
 }
 
 // TODO Atmosphere change to main
-Weather.propTypes = {
+Weather2.propTypes = {
 //    temp: propTypes.number.isRequired,
 //    condition: propTypes.oneOf(["Thunderstorm", "Drizzle", "Rain", "Snow", "Mist", "Smoke","Haze", "Dust", "Fog", "Sand", "Dust", "Ash", "Squall", "Tornado", "Clear", "Clouds"]).isRequired
 }

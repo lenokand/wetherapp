@@ -2,9 +2,13 @@ import React from "react";
 import { StatusBar } from 'expo-status-bar';
 import {ActivityIndicator, StyleSheet, Text, View } from 'react-native';
 import Weather from "./Weather";
+import Weather2 from "./Weather2";
 //import WeatherFor5Days from "./WeatherFor5Days";
 
-export default function Main (dayData,  data5days) {
+export default function Main2 (dayData) {
+
+//console.log(dayData)
+//console.log("dayData Main2")
 
 
     return (
@@ -15,11 +19,11 @@ export default function Main (dayData,  data5days) {
           </Text>
         </View>
         <View style={styles.black}>
+            <Weather2 dayData={dayData} />
+            <Text>
 
-                            <Weather dayData={dayData}/>
-
-
-
+            </Text>
+      //            <WeatherFor5Days data5days = {data5days} />
         </View>
 
         <StatusBar style="light" />

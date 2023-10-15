@@ -1,4 +1,6 @@
-const weatherOptions2 = {
+// Icons
+
+const weatherOptions = {
     Rain:{
         iconName:'weather-lightning-rainy',
         gradient:["#373b44","#4286f4"]
@@ -8,32 +10,31 @@ const weatherOptions2 = {
         gradient:["#2980b9","#6dd5fa","#ffffff"]
     },
     Thunderstorm:{
-        iconName:'weather-windy',
+        iconName:'weather-windy-variant',
         gradient:["#F0F2F0","#000C40"]
     },
     Drizzle:{
-        iconName:'md-rainy-outline',
+        iconName:'weather-partly-rainy',
         gradient:['#4c669f', '#3b5998', '#192f6a']
-
     },
     Mist:{
-        iconName:'md-rainy-outline',
+        iconName:'weather-partly-rainy',
         gradient:['#7f7fd5', '#86a8e7', '#91eae4']
     },
     Smoke:{
-        iconName:'md-rainy-outline',
+        iconName:"weather-partly-rainy",
         gradient:['#7f7fd5', '#86a8e7', '#91eae4']
     },
     Haze:{
-        iconName:'md-rainy-outline',
+        iconName:"weather-partly-rainy",
         gradient:['#7f7fd5', '#86a8e7', '#91eae4']
     },
     Dust:{
-        iconName:'md-rainy-outline',
+        iconName:"weather-partly-rainy",
         gradient:['#7f7fd5', '#86a8e7', '#91eae4']
     },
     Fog:{
-        iconName:'md-rainy-outline',
+        iconName:"weather-partly-rainy",
         gradient:['#7f7fd5', '#86a8e7', '#91eae4']
     },
     Clouds:{
@@ -48,7 +49,15 @@ const weatherOptions2 = {
         iconName:'cloud',
         gradient:['#fceabb', '#86a8e7', '#91eae4']
     }
-
 }
-
-export default weatherOptions2
+const daysOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+const daysOfWeekLong = [
+                         "Sunday",
+                         "Monday",
+                         "Tuesday",
+                         "Wednesday",
+                         "Thursday",
+                         "Friday",
+                         "Saturday"
+                       ];
+export  {weatherOptions, daysOfWeek, daysOfWeekLong}

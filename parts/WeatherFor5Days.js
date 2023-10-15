@@ -1,8 +1,11 @@
 import React from "react";
 import { StyleSheet, Text, View } from 'react-native';
+import DayItem from './DayItem'
+
 
 export default function WeatherFor5Days ({data5days}){
-//const dailyData = data5days.data.list.filter(reading => reading.dt_txt.includes("15:00:00"))
+
+const dailyData = data5days.data.list.filter(reading => reading.dt_txt.includes("15:00:00"))
 
 //const ms = dailyData[0].dt * 1000 ;
 //const weekdayName = new Date(ms).toLocaleString('en-US', {weekday: 'short'});
@@ -11,22 +14,17 @@ export default function WeatherFor5Days ({data5days}){
 
     return (
       
-        <View style={styles.container}>
-
-            
+        <View style={styles.wrapper}>
             <Text> 
-                Weather in {data5days.data.city.name} for 5 days
-             {/* {data5days.dt_txt} */
+                Weather in {data5days.data.city.name} for next 5 days
 
-              dailyData.forEach((element, i) => {
-//              console.log(element.dt)
-//                 console.log(Math.round(element.main.temp))
-//                 console.log(Math.round(element.main.temp))
-                })
-             }
-    
             </Text>
+            <View style={styles.container}>
+                {
+                    dailyData.map((element) => <DayItem element={element}/>)
+                }
 
+            </View>
         </View>
 
     );
@@ -35,13 +33,17 @@ export default function WeatherFor5Days ({data5days}){
 
 const styles = StyleSheet.create({
     container:{
-        flex:2,
+
         flexDirection:"row",
         flexWrap: "nowrap",
-        backgroundColor: "#fff"
-
+        backgroundColor: "#fff",
+//        paddingTop: "30",
 
     },
+     wrapper:{
+              flex:2,
+
+          },
     element:{
         flex:1,
         alignItems: "center",

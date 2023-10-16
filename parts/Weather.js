@@ -24,7 +24,6 @@ const weekdayNumber = new Date(dayMs).getDay();
 
 const hoursSet = new Date(sunset  * 1000 + timezoneNormalize).getHours();
 const minutesSet = new Date(sunset  * 1000 + timezoneNormalize).getMinutes();
-//console.log("sunrise", hoursRise , minutesRise,"sunset", hoursSet, minutesSet);
     return (
         <LinearGradient
             colors={weatherOptions[condition].gradient}

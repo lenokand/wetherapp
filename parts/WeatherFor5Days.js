@@ -21,7 +21,7 @@ const dailyData = data5days.data.list.filter(reading => reading.dt_txt.includes(
             </Text>
             <View style={styles.container}>
                 {
-                    dailyData.map((element) => <DayItem element={element}/>)
+                    dailyData.map((element) => <DayItem key={element.dt} element={element}/>)
                 }
 
             </View>

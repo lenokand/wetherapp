@@ -7,8 +7,8 @@ import  { weatherOptions, daysOfWeekLong }  from './Options.js';
 
 export default function Weather ({dayData}){
 
-
-const {data:  {main: {temp, feels_like, temp_min, temp_max}, timezone, dt, sys:{sunrise, sunset}, weather, name}} = dayData;
+console.log(dayData)
+const  {main: {temp, feels_like, temp_min, temp_max}, timezone, dt, sys:{sunrise, sunset}, weather, name} = dayData;
 
 const condition = weather[0].main;
 const description = weather[0].description;
@@ -24,6 +24,8 @@ const weekdayNumber = new Date(dayMs).getDay();
 
 const hoursSet = new Date(sunset  * 1000 + timezoneNormalize).getHours();
 const minutesSet = new Date(sunset  * 1000 + timezoneNormalize).getMinutes();
+
+
     return (
         <LinearGradient
             colors={weatherOptions[condition].gradient}

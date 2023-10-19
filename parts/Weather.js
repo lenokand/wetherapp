@@ -15,16 +15,17 @@ const description = weather[0].description;
 // sunrise in Unix Timestamp
 const sunriseNormalize = new Date(sunrise  * 1000).toLocaleString('en-US', {weekday: 'short'});
 const timezoneNormalize = timezone * 1000;
-const hoursRise = new Date(sunrise  * 1000 + timezoneNormalize).getHours();
-const minutesRise = new Date(sunrise  * 1000 + timezoneNormalize).getMinutes();
+const hoursRise = new Date(sunrise  * 1000 ).getHours();
+const minutesRise = new Date(sunrise  * 1000 ).getMinutes();
 
 
 const dayMs = dt * 1000 ;
 const weekdayNumber = new Date(dayMs).getDay();
 
-const hoursSet = new Date(sunset  * 1000 + timezoneNormalize).getHours();
-const minutesSet = new Date(sunset  * 1000 + timezoneNormalize).getMinutes();
+const hoursSet = new Date(sunset  * 1000 ).getHours();
+const minutesSet = new Date(sunset  * 1000 ).getMinutes();
 
+console.log(hoursSet, new Date(sunset  * 1000 ).getHours(), new Date(sunrise  * 1000 ).getHours(), new Date(timezoneNormalize).getHours())
 
     return (
         <LinearGradient

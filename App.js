@@ -34,7 +34,7 @@ export default  App = () => {
       console.log(error);
       Alert.alert("very sad: " +  error);
     }
-     console.log( isLoading, " getLocation");
+//     console.log( isLoading, " getLocation");
   }
 
  getWeather = async ({latitude, longitude}) => {
@@ -47,20 +47,20 @@ export default  App = () => {
                setData5days(data5days);
                setDayData(dayData);
                setLoading(false);
-               console.log( isLoading, " getWeather ok");
+//               console.log( isLoading, " getWeather ok");
 
 
    }catch(error){
         console.log(error);
-        console.log( isLoading, " getWeather error");
+//        console.log( isLoading, " getWeather error");
     }finally{
-          console.log( isLoading, " getWeather  finally");
+//          console.log( isLoading, " getWeather  finally");
         }
-        console.log( isLoading, " getWeather");
+//        console.log( isLoading, " getWeather");
   };
  useEffect(() => {
     getLocation();
-    console.log(isLoading, " useEffect");
+//    console.log(isLoading, " useEffect");
   }, []);
   useEffect(()=> {
       if (location){
@@ -73,3 +73,4 @@ return (
 );
 
 }
+

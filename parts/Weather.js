@@ -12,20 +12,26 @@ const  {main: {temp, feels_like, temp_min, temp_max}, timezone, dt, sys:{sunrise
 
 const condition = weather[0].main;
 const description = weather[0].description;
-// sunrise in Unix Timestamp
-const sunriseNormalize = new Date(sunrise  * 1000).toLocaleString('en-US', {weekday: 'short'});
-const timezoneNormalize = timezone * 1000;
-const hoursRise = new Date(sunrise  * 1000 ).getHours();
-const minutesRise = new Date(sunrise  * 1000 ).getMinutes();
-
 
 const dayMs = dt * 1000 ;
 const weekdayNumber = new Date(dayMs).getDay();
+///////// sunrise in Unix Timestamp
+const sunriseDate = new Date(sunrise * 1000); // Multiply by 1000 to convert from seconds to milliseconds
+const sunsetDate = new Date(sunset * 1000);
+const adjustedSunrise = new Date(sunriseDate.getTime() + timezone * 1000); // Multiply by 1000 to convert from seconds to milliseconds
+const adjustedSunset = new Date(sunsetDate.getTime() + timezone * 1000);
 
-const hoursSet = new Date(sunset  * 1000 ).getHours();
-const minutesSet = new Date(sunset  * 1000 ).getMinutes();
+const formatTime = (date) => {
+  const hours = date.getUTCHours();
+  const minutes = date.getUTCMinutes();
 
-console.log(hoursSet, new Date(sunset  * 1000 ).getHours(), new Date(sunrise  * 1000 ).getHours(), new Date(timezoneNormalize).getHours())
+  return `${hours}:${minutes < 10 ? '0' : ''}${minutes}`;
+};
+
+const sunriseTime = formatTime(adjustedSunrise);
+const sunsetTime = formatTime(adjustedSunset);
+
+
 
     return (
         <LinearGradient
@@ -71,10 +77,10 @@ console.log(hoursSet, new Date(sunset  * 1000 ).getHours(), new Date(sunrise  * 
 
                 <View>
 
-                    <Text>sunrise: {hoursRise}:{minutesRise<=9 ? "0"+minutesRise:minutesRise}</Text>
+                    <Text>sunrise: {sunriseTime}</Text>
                     <MaterialCommunityIcons name="weather-sunset-up" size={30} color="white" />
 
-                    <Text>sunset: {hoursSet}:{minutesSet<=9 ? "0"+minutesRise:minutesSet} </Text>
+                    <Text>sunset: {sunsetTime} </Text>
                     <MaterialCommunityIcons name="weather-sunset-down" size={30} color="white" />
                 </View>
         </LinearGradient>
@@ -82,12 +88,6 @@ console.log(hoursSet, new Date(sunset  * 1000 ).getHours(), new Date(sunrise  * 
 
     );
 }
-
-// TODO Atmosphere change to main
-//Weather.propTypes = {
-//    temp: propTypes.number.isRequired,
-//    condition: propTypes.oneOf(["Thunderstorm", "Drizzle", "Rain", "Snow", "Mist", "Smoke","Haze", "Dust", "Fog", "Sand", "Dust", "Ash", "Squall", "Tornado", "Clear", "Clouds"]).isRequired
-//}
 
 const styles = StyleSheet.create({
     container : {

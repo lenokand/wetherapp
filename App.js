@@ -7,6 +7,7 @@ import * as Location from 'expo-location';
 import axios from 'axios';
 import APIweather from './parts/config';
 
+//todo
 //1 - погода на неделю  должна начинаться с завтрашней даты (чекнуть что приходит с апи на 5 дней, возмножно так и приходит)
 //2 - производительность, при запуске нихоена не показівает
 //3 - проверить  часовые пояса
@@ -16,13 +17,6 @@ export default  App = () => {
   const [location, setLocation] = useState(undefined);
   const [dayData, setDayData] = useState([]);
   const [data5days, setData5days] = useState({});
-
-
-//  const [data, setData] = useState([]);
-//  state = {
-//    isLoading: true,
-
-//  }
 
   getLocation = async () => {
 
@@ -34,7 +28,6 @@ export default  App = () => {
       console.log(error);
       Alert.alert("very sad: " +  error);
     }
-//     console.log( isLoading, " getLocation");
   }
 
  getWeather = async ({latitude, longitude}) => {
@@ -47,7 +40,7 @@ export default  App = () => {
                setData5days(data5days);
                setDayData(dayData);
                setLoading(false);
-//               console.log( isLoading, " getWeather ok");
+               console.log( 'https://api.openweathermap.org/data/2.5/weather?lat=' + latitude + '&lon='+ longitude +'&appid='+ APIweather + '&units=metric');
 
 
    }catch(error){

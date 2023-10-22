@@ -9,28 +9,26 @@ const dailyData = data5days.list.filter(reading => reading.dt_txt.includes("12:0
     return (
       
         <View style={styles.wrapper}>
-            <Text> 
-                Weather in {data5days.city.name} for next 5 days
+                    <Text style={styles.title}>
+                        Weather in {data5days.city.name} for next 5 days
 
-            </Text>
-            <View style={styles.container}>
-                {
-                    dailyData.map((element) => <DayItem key={element.dt} element={element}/>)
-                }
+                    </Text>
+                    <View style={styles.container}>
+                        {dailyData.map((element) => <DayItem key={element.dt} element={element}/>)}
 
-            </View>
+                    </View>
         </View>
 
     );
 }
 
-
 const styles = StyleSheet.create({
     container:{
-
-        flexDirection:"row",
+        gap: 5,
+        flexDirection:"col",
         flexWrap: "nowrap",
-        backgroundColor: "#fff",
+        flex:5
+//        backgroundColor: "#63468f",
 //        paddingTop: "30",
 
     },
@@ -44,6 +42,14 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         borderBlockColor: "#000",
         borderWidth: 1,
+    },
+    title:{
+        paddingTop: 15,
+        paddingBottom: 15,
+        paddingLeft: 10,
+        color: "#fff",
+        fontSize: 21,
+        backgroundColor: "#63468f",
     }
 
 

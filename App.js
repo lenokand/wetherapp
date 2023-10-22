@@ -10,7 +10,7 @@ import APIweather from './parts/config';
 //todo
 //1 - погода на неделю  должна начинаться с завтрашней даты (чекнуть что приходит с апи на 5 дней, возмножно так и приходит)
 //2 - производительность, при запуске нихоена не показівает
-//3 - проверить  часовые пояса
+
 export default  App = () => {
 
   const [isLoading, setLoading] = useState(true);
@@ -45,15 +45,12 @@ export default  App = () => {
 
    }catch(error){
         console.log(error);
-//        console.log( isLoading, " getWeather error");
     }finally{
-//          console.log( isLoading, " getWeather  finally");
         }
-//        console.log( isLoading, " getWeather");
   };
  useEffect(() => {
     getLocation();
-//    console.log(isLoading, " useEffect");
+
   }, []);
   useEffect(()=> {
       if (location){

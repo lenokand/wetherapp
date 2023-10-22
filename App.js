@@ -17,6 +17,7 @@ export default  App = () => {
   const [location, setLocation] = useState(undefined);
   const [dayData, setDayData] = useState([]);
   const [data5days, setData5days] = useState({});
+  const [city, setCity] = useState(''); // Add city state
 
   getLocation = async () => {
 
@@ -30,24 +31,56 @@ export default  App = () => {
     }
   }
 
- getWeather = async ({latitude, longitude}) => {
+ getWeather = async ({latitude, longitude, cityName}) => {
   try{
+            let response;
+            let responseWeekly;
+                if (cityName) {
+                  response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${APIweather}&units=metric`);
+                   responseWeekly = await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=${APIweather}&units=metric`);
 
-               const response = await fetch('https://api.openweathermap.org/data/2.5/weather?lat=' + latitude + '&lon='+ longitude +'&appid='+ APIweather + '&units=metric');
-               const dayData = await response.json();
-               const responseWeekly = await fetch('https://api.openweathermap.org/data/2.5/forecast?lat=' + latitude + '&lon='+ longitude + '&appid='+ APIweather + "&units=metric");
-               const data5days = await responseWeekly.json();
-               setData5days(data5days);
-               setDayData(dayData);
-               setLoading(false);
+                } else {
+                  response = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${APIweather}&units=metric`);
+                  responseWeekly = await fetch('https://api.openweathermap.org/data/2.5/forecast?lat=' + latitude + '&lon='+ longitude + '&appid='+ APIweather + "&units=metric");
+
+                }
+
+                if (response.status === 404) {
+                        // Handle the "city not found" error
+                        console.log(' City not found. Please enter a valid city. ');
+                        alert(`City ${cityName? cityName:null } not found. Please enter a valid city.`);
+                        // You can reset the city state or ask the user for a new city name
+//                        setCity('');
+                      } else {
+                        // Successful response, update the data
+                        if (cityName) {
+                          setCity(cityName);
+                        } else {
+                          setCity(''); // Reset the city state
+                        }
+
+                           const dayData = await response.json();
+                           const data5days = await responseWeekly.json();
+
+                           setData5days(data5days);
+                           setDayData(dayData);
+                           setLoading(false);
+                }
                console.log( 'https://api.openweathermap.org/data/2.5/weather?lat=' + latitude + '&lon='+ longitude +'&appid='+ APIweather + '&units=metric');
 
 
    }catch(error){
         console.log(error);
-    }finally{
-        }
+    }finally{}
   };
+
+
+    const onCitySubmit = (cityName) => {
+      setCity(cityName);
+      console.log(cityName)
+      // Fetch weather data based on the manually entered city name
+      getWeather({ cityName });
+    };
  useEffect(() => {
     getLocation();
 
@@ -59,7 +92,7 @@ export default  App = () => {
   },[location])
 
 return (
- isLoading ? <Loading/> : <Main dayData={dayData} data5days={data5days}/>
+ isLoading ? <Loading/> : <Main dayData={dayData} data5days={data5days} onCitySubmit={onCitySubmit}  />
 );
 
 }

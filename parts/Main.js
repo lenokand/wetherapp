@@ -3,8 +3,10 @@ import { StatusBar } from 'expo-status-bar';
 import {ActivityIndicator, StyleSheet, Text, View, ScrollView } from 'react-native';
 import Weather from "./Weather";
 import WeatherFor5Days from "./WeatherFor5Days";
+import CityInput from "./CityInput";
 
-export default function Main ({dayData, data5days}) {
+
+export default function Main ({dayData, data5days, onCitySubmit }) {
 
     return (
     <View style={styles.container2}>
@@ -13,6 +15,9 @@ export default function Main ({dayData, data5days}) {
                   <Text style={styles.text}>
                     Your lovely weather app
                   </Text>
+
+                   <CityInput onCitySubmit={onCitySubmit} />
+
                 </View>
                <Weather dayData = {dayData}/>
                 <View style={styles.weekly}>
@@ -20,11 +25,12 @@ export default function Main ({dayData, data5days}) {
                     <WeatherFor5Days  data5days = {data5days}/>
                 </View>
                 <StatusBar style="light"/>
+
             </ScrollView>
+
         </View>
     );
 }
-
 
 const styles = StyleSheet.create({
     container2: {

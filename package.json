@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@expo/webpack-config": "^19.0.0",
+    "algoliasearch": "^4.20.0",
     "axios": "^1.5.1",
     "expo": "~49.0.11",
     "expo-linear-gradient": "~12.3.0",

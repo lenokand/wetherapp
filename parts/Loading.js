@@ -19,6 +19,7 @@ const styles = StyleSheet.create({
         paddingVertical: 100,
         backgroundColor: "#fff",
         alignItems:"center",
+        justifyContent: "center",
     },
     box:{
         paddingBottom: 30, 

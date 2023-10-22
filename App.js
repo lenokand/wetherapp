@@ -50,7 +50,7 @@ export default  App = () => {
                         console.log(' City not found. Please enter a valid city. ');
                         alert(`City ${cityName? cityName:null } not found. Please enter a valid city.`);
                         // You can reset the city state or ask the user for a new city name
-//                        setCity('');
+                        setCity('');
                       } else {
                         // Successful response, update the data
                         if (cityName) {

@@ -21,6 +21,8 @@ const sunsetDate = new Date(sunset * 1000);
 const adjustedSunrise = new Date(sunriseDate.getTime() + timezone * 1000); // Multiply by 1000 to convert from seconds to milliseconds
 const adjustedSunset = new Date(sunsetDate.getTime() + timezone * 1000);
 
+const adjustedDayLight = sunset - sunrise
+
 const formatTime = (date) => {
   const hours = date.getUTCHours();
   const minutes = date.getUTCMinutes();
@@ -31,6 +33,15 @@ const formatTime = (date) => {
 const sunriseTime = formatTime(adjustedSunrise);
 const sunsetTime = formatTime(adjustedSunset);
 
+// Calculate the duration of daylight in seconds
+const daylightDurationInSeconds = (sunsetDate - sunriseDate) / 1000;
+
+// Convert the duration to hours and minutes
+const hours = Math.floor(daylightDurationInSeconds / 3600);
+const minutes = Math.floor((daylightDurationInSeconds % 3600) / 60);
+
+
+const dayLight = `${hours}h${minutes}m`
 
 
     return (
@@ -45,20 +56,16 @@ const sunsetTime = formatTime(adjustedSunset);
                         {'\u00b0'}
 
                     </Text>
-                    <Text style={styles.temp_like}>
-                        feels like: {Math.round(feels_like)}
-                    </Text>
-                </View>
-                <View>
-                    <Text>
-                        Min: {Math.round(temp_min)}{'\u00b0'}  Max: {Math.round(temp_max)}{'\u00b0'}
-                    </Text>
+
                 </View>
                 <View style={styles.name}>
                         <Text style={styles.nameText}>
                             {name}
                         </Text>
+                         <Text style={styles.name}>Today is: {new Date(dt * 1000).getDate()} {daysOfWeekLong[weekdayNumber]} </Text>
+
                 </View>
+
                 <View style={styles.info}>
 
 
@@ -71,21 +78,45 @@ const sunsetTime = formatTime(adjustedSunset);
                                         {condition}
                                     </Text>
                                 </View>
-                                <View style={styles.sun}>
-                                    <Text style={styles.sunTitle} >Daylight </Text>
-                                    <View style={styles.sunWrapper}>
-                                        <MaterialCommunityIcons name="weather-sunset-up" size={30} color="white" />
-                                        <Text style={styles.sunContent}>
-                                            {sunriseTime}
-                                        </Text>
+
+                                <View style={styles.blockWrapper}>
+                                    <View style={styles.sun}>
+                                        <Text style={styles.sunTitle} >Daylight - {dayLight}</Text>
+                                        <View style={styles.sunWrapper}>
+                                            <MaterialCommunityIcons name="weather-sunset-up" size={30} color="white" />
+                                            <Text style={styles.sunContent}>
+                                                {sunriseTime}
+                                            </Text>
+                                        </View>
+                                        <View style={styles.sunWrapper}>
+                                            <MaterialCommunityIcons name="weather-sunset-down" size={30} color="white" />
+                                            <Text style={styles.sunContent}>
+                                                {sunsetTime}
+                                            </Text>
+                                        </View>
                                     </View>
-                                    <View style={styles.sunWrapper}>
-                                        <MaterialCommunityIcons name="weather-sunset-down" size={30} color="white" />
-                                        <Text style={styles.sunContent}>
-                                            {sunsetTime}
-                                        </Text>
+
+                                    <View style={styles.sun}>
+
+                                        <Text style={styles.sunTitle} >Feels like: {Math.round(feels_like)}{'\u00b0'}</Text>
+                                        <View style={styles.sunWrapper}>
+                                            <Text style={styles.iconTemp}> min </Text>
+                                            <Text style={styles.sunContent}>
+                                                 {Math.round(temp_min)}{'\u00b0'}
+
+                                            </Text>
+                                        </View>
+                                        <View style={styles.sunWrapper}>
+                                              <Text style={styles.iconTemp}> max </Text>
+                                            <Text style={styles.sunContent}>
+                                               {Math.round(temp_max)}{'\u00b0'}
+                                            </Text>
+                                        </View>
                                     </View>
+
+
                                 </View>
+
         </LinearGradient>
     
 
@@ -109,6 +140,10 @@ const styles = StyleSheet.create({
     },
     nameText:{
         fontSize: 32,
+        textAlign:"center"
+    },
+    name:{
+    textAlign: "center"
     },
     info:{
         paddingTop: 20,
@@ -120,6 +155,10 @@ const styles = StyleSheet.create({
     temp:{
         color: "white",
         fontSize: 30,
+    },
+    iconTemp:{
+    fontSize: 22,
+    paddingBottom: 3
     },
     temp_like:{
         fontSize: 14,
@@ -171,6 +210,10 @@ const styles = StyleSheet.create({
     sunWrapper:{
         alignItems: "center",
         justifyContent: "center",
+    },
+    blockWrapper: {
+        flexDirection: "row",
+        flexWrap: "nowrap"
     }
 
 })

@@ -6,6 +6,7 @@ export default function Loading () {
     return (
     <View style={styles.container}>
         <Text style={styles.box}>Looking for the weather for you...</Text>
+        <Text style={styles.box}>Be patient, please</Text>
         <ActivityIndicator  size="large" color="#73095c" />
         <StatusBar style="dark" />
     </View>

@@ -36,7 +36,6 @@ const styles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "space-between",
         height: 70,
-//        minHeight: "20%",
     },
     container:{
             flex: 2,

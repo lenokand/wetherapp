@@ -140,10 +140,12 @@ const styles = StyleSheet.create({
     },
     nameText:{
         fontSize: 32,
-        textAlign:"center"
+        textAlign:"center",
+        color: "#fff"
     },
     name:{
-    textAlign: "center"
+    textAlign: "center",
+    color: "#fff"
     },
     info:{
         paddingTop: 20,
@@ -158,7 +160,8 @@ const styles = StyleSheet.create({
     },
     iconTemp:{
     fontSize: 22,
-    paddingBottom: 3
+    paddingBottom: 2,
+    color: "#fff",
     },
     temp_like:{
         fontSize: 14,

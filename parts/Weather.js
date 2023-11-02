@@ -126,7 +126,7 @@ const dayLight = `${hours}h${minutes}m`
 const styles = StyleSheet.create({
     container : {
         flex: 5,
-        paddingBottom: 10,
+//        paddingBottom: 10,
         paddingTop: 10,
 //        paddingLeft: 10,
 //        paddingRight: 10,
@@ -191,8 +191,7 @@ const styles = StyleSheet.create({
         padding: 15,
         flexWrap: "wrap",
         width: "50%",
-        borderWidth: 1,
-        borderColor: "#fff"
+
     },
     sunTitle:{
         fontSize: 20,
@@ -216,7 +215,12 @@ const styles = StyleSheet.create({
     },
     blockWrapper: {
         flexDirection: "row",
-        flexWrap: "nowrap"
+        flexWrap: "nowrap",
+        borderWidth: 1,
+        borderColor: "#fff",
+        borderTopRightRadius: 40,
+        borderTopLeftRadius: 40,
+        marginTop: 10,
     }
 
 })

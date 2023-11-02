@@ -7,7 +7,7 @@ import CityInput from "./CityInput";
 
 
 export default function Main ({dayData, data5days, onCitySubmit }) {
-
+console.log(dayData)
     return (
     <View style={styles.container2}>
             <ScrollView style={styles.container}>

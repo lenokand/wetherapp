@@ -7,6 +7,10 @@ import * as Location from 'expo-location';
 import axios from 'axios';
 import APIweather from './parts/config';
 
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import DayDetails from './parts/DayDetails';
+const Stack = createStackNavigator();
 //todo
 //1 - производительность, при запуске нихоена не показівает
 
@@ -81,17 +85,33 @@ export default  App = () => {
       getWeather({ cityName });
     };
  useEffect(() => {
+ console.log("useEffect")
+
     getLocation();
 
   }, []);
   useEffect(()=> {
+  console.log("useEffect2") 
+
       if (location){
         getWeather(location);
       }
   },[location])
 
+
+
 return (
- isLoading ? <Loading/> : <Main dayData={dayData} data5days={data5days} onCitySubmit={onCitySubmit}  />
+<NavigationContainer>
+      <Stack.Navigator initialRouteName="Main">
+        <Stack.Screen name="Main" options={{ headerShown: false }} >
+          {() => (
+            isLoading ? <Loading /> : <Main dayData={dayData} data5days={data5days} onCitySubmit={onCitySubmit} />
+          )}
+        </Stack.Screen>
+        <Stack.Screen name="DayDetails" component={DayDetails} />
+      </Stack.Navigator>
+    </NavigationContainer>
+
 );
 
 }

@@ -1,10 +1,17 @@
 import React from "react";
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import DayItem from './DayItem'
+import DayDetails from './DayDetails'
 
+import { useNavigation } from '@react-navigation/native';
 
 export default function WeatherFor5Days ({data5days}){
 const dailyData = data5days.list.filter(reading => reading.dt_txt.includes("12:00:00"))
+
+const navigation = useNavigation();
+ const handleDayItemPress = (dayItem) => {
+    navigation.navigate('DayDetails', { dayItemData: dayItem });
+  };
 
     return (
       
@@ -14,7 +21,10 @@ const dailyData = data5days.list.filter(reading => reading.dt_txt.includes("12:0
 
                     </Text>
                     <View style={styles.container}>
-                        {dailyData.map((element) => <DayItem key={element.dt} element={element}/>)}
+                        {dailyData.map((element) =>
+                                ( <TouchableOpacity key={element.dt} onPress={() => handleDayItemPress(element)}>
+                                     <DayItem element={element} />
+                                   </TouchableOpacity>))}
 
                     </View>
         </View>

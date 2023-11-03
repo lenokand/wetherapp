@@ -12,20 +12,18 @@ const condition = element.weather[0].main;
 
 return (
    <LinearGradient
-                colors={weatherOptions[condition].gradient}
+               colors={weatherOptions[condition].gradient}
                style={styles.item}>
 
                <View style={styles.day}>
-                   <Text style={styles.text}> {daysOfWeek[weekdayNumber]} {new Date(dayMs).getDate()} </Text>
+                   <Text style={styles.text}> {daysOfWeek[weekdayNumber]} {new Date(dayMs).getDate()}  </Text>
                </View>
                 <View style={styles.conditions}>
                    <Text style={styles.text, styles.width}> {element.weather[0].main}</Text>
                    <Text style={styles.text, styles.width}> {Math.round(element.main.feels_like)}{'\u00b0'}</Text>
-
-
                    <MaterialCommunityIcons style={styles.width} name={weatherOptions[condition].iconName} size={30} color="white" />
                </View>
-       </LinearGradient>
+   </LinearGradient>
 );
 }
 

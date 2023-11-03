@@ -21,12 +21,30 @@ const navigation = useNavigation();
 
                     </Text>
                     <View style={styles.container}>
-                        {dailyData.map((element) =>
-                                ( <TouchableOpacity key={element.dt} onPress={() => handleDayItemPress(element)}>
-                                     <DayItem element={element} />
-                                   </TouchableOpacity>))}
+                        {
+                            dailyData.map((element) =>
+                                    (<TouchableOpacity
+                                        key={element.dt}
+                                        onPress={() => handleDayItemPress(element)}>
+                                            <DayItem element={element} />
+                                    </TouchableOpacity>)
+                                    )
+                                   }
 
                     </View>
+                   { /*<View style={styles.container}>
+                                            {data5days.list.map((element) =>
+
+                                                      element.dt_txt.includes("12:00:00") ? (
+                                                        <TouchableOpacity
+                                                            key={element.dt}
+                                                            onPress={() => handleDayItemPress(element)}>
+                                                                <DayItem element={element} />
+                                                        </TouchableOpacity>
+                                                        ): (null)
+                                                       )}
+
+                                        </View> */}
         </View>
 
     );
@@ -37,9 +55,8 @@ const styles = StyleSheet.create({
         gap: 5,
         flexDirection:"col",
         flexWrap: "nowrap",
-        flex:5
-//        backgroundColor: "#63468f",
-//        paddingTop: "30",
+        flex:5,
+        paddingBottom:5
 
     },
      wrapper:{

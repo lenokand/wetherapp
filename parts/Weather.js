@@ -77,7 +77,7 @@ const dayLight = `${hours}h${minutes}m`
                                     <Text style={styles.temp}>
                                         {condition}
                                     </Text>
-                                </View>
+                </View>
 
                                 <View style={styles.blockWrapper}>
                                     <View style={styles.sun}>
@@ -126,10 +126,7 @@ const dayLight = `${hours}h${minutes}m`
 const styles = StyleSheet.create({
     container : {
         flex: 5,
-//        paddingBottom: 10,
         paddingTop: 10,
-//        paddingLeft: 10,
-//        paddingRight: 10,
     },
     block:{
         flex:2,

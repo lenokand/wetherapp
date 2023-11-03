@@ -11,7 +11,6 @@ export default  function  CityInput  ({ onCitySubmit }){
   const handleCitySubmit = () => {
     // Check if the input is not empty
     if (city.trim() === '') {
-      // You can show a message or take other actions for empty input
       alert('Please enter a city name.');
       return;
     }
@@ -65,6 +64,10 @@ const styles = StyleSheet.create({
         color: "#63468f",
         padding: 8,
         borderRadius: 5,
+  },
+  buttonText:{
+    color:"#63468f",
+    fontWeight: '700'
   }
 
 });

@@ -50,7 +50,7 @@ export default  App = () => {
 
                 if (response.status === 404) {
                         // Handle the "city not found" error
-                        console.log(' City not found. Please enter a valid city. ');
+                        console.log('  City not found. Please enter a valid city. ');
                         alert(`City ${cityName? cityName:null } not found. Please enter a valid city.`);
                         // You can reset the city state or ask the user for a new city name
                         setCity('');
@@ -69,7 +69,7 @@ export default  App = () => {
                            setDayData(dayData);
                            setLoading(false);
                 }
-               console.log( 'https://api.openweathermap.org/data/2.5/weather?lat=' + latitude + '&lon='+ longitude +'&appid='+ APIweather + '&units=metric');
+               console.log( ' https://api.openweathermap.org/data/2.5/weather?lat=' + latitude + '&lon='+ longitude +'&appid='+ APIweather + '&units=metric');
 
 
    }catch(error){
@@ -108,7 +108,8 @@ return (
             isLoading ? <Loading /> : <Main dayData={dayData} data5days={data5days} onCitySubmit={onCitySubmit} />
           )}
         </Stack.Screen>
-        <Stack.Screen name="DayDetails" component={DayDetails} />
+        <Stack.Screen name="DayDetails" component={DayDetails}
+         options={{ headerStyle: { backgroundColor: '#63468f' }, headerTintColor: '#fff', headerTitleStyle: { color: '#fff' } }} />
       </Stack.Navigator>
     </NavigationContainer>
 

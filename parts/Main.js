@@ -6,8 +6,7 @@ import WeatherFor5Days from "./WeatherFor5Days";
 import CityInput from "./CityInput";
 
 
-export default function Main ({dayData, data5days, onCitySubmit }) {
-console.log(dayData)
+export default function Main ({dayData, data5days, onCitySubmit, onMapSubmit }) {
     return (
     <View style={styles.container2}>
             <ScrollView style={styles.container}>
@@ -16,7 +15,7 @@ console.log(dayData)
                     Your lovely weather app
                   </Text>
 
-                   <CityInput onCitySubmit={onCitySubmit} />
+                   <CityInput onCitySubmit={onCitySubmit} onMapSubmit={onMapSubmit}/>
 
                 </View>
                <Weather dayData = {dayData}/>

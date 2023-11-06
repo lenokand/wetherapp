@@ -10,9 +10,10 @@ import APIweather from './parts/config';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import DayDetails from './parts/DayDetails';
+import MapScreen from './parts/MapScreen';
 const Stack = createStackNavigator();
 //todo
-//1 - производительность, при запуске нихоена не показівает
+//1 - производительность, при запуске
 
 export default  App = () => {
 
@@ -50,9 +51,8 @@ export default  App = () => {
 
                 if (response.status === 404) {
                         // Handle the "city not found" error
-                        console.log('  City not found. Please enter a valid city. ');
+                        console.log('City not found. Please enter a valid city. ');
                         alert(`City ${cityName? cityName:null } not found. Please enter a valid city.`);
-                        // You can reset the city state or ask the user for a new city name
                         setCity('');
                       } else {
                         // Successful response, update the data
@@ -79,11 +79,27 @@ export default  App = () => {
 
 
     const onCitySubmit = (cityName) => {
-      setCity(cityName);
-      console.log(cityName)
-      // Fetch weather data based on the manually entered city name
-      getWeather({ cityName });
+
+                if(cityName){//  Fetch weather data based on the manually entered city name
+                            setCity(cityName);
+                            getWeather({ cityName });
+                            console.log(cityName, " cityName ")
+
+                        }
+
+
+
     };
+    const onMapSubmit = (mapCoordinates) =>{
+                            if(mapCoordinates != {}){
+
+                                 console.log(mapCoordinates, "mapCoordinates App ")
+                                 const { latitude, longitude } = mapCoordinates;
+                                 setLocation({latitude, longitude});
+                                 getWeather({latitude, longitude});
+                                };
+    }
+
  useEffect(() => {
  console.log("useEffect")
 
@@ -91,7 +107,7 @@ export default  App = () => {
 
   }, []);
   useEffect(()=> {
-  console.log("useEffect2") 
+        console.log(" useEffect2")
 
       if (location){
         getWeather(location);
@@ -105,11 +121,12 @@ return (
       <Stack.Navigator initialRouteName="Main">
         <Stack.Screen name="Main" options={{ headerShown: false }} >
           {() => (
-            isLoading ? <Loading /> : <Main dayData={dayData} data5days={data5days} onCitySubmit={onCitySubmit} />
+            isLoading ? <Loading /> : <Main dayData={dayData} data5days={data5days} onCitySubmit={onCitySubmit} onMapSubmit={onMapSubmit} />
           )}
         </Stack.Screen>
         <Stack.Screen name="DayDetails" component={DayDetails}
          options={{ headerStyle: { backgroundColor: '#63468f' }, headerTintColor: '#fff', headerTitleStyle: { color: '#fff' } }} />
+         <Stack.Screen name="MapScreen" component={MapScreen} />
       </Stack.Navigator>
     </NavigationContainer>
 

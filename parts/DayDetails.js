@@ -6,13 +6,17 @@ import  { weatherOptions, daysOfWeekLong, monthNames }  from './Options.js';
 
 
 export default function DayDetails({ route }) {
- const { dayItemData } = route.params; // Extract data from navigation parameters
+ const { dayItemData } = route.params; //  Extract data from navigation parameters
  const condition = dayItemData.weather[0].main;
  const description = dayItemData.weather[0].description;
 
 console.log(dayItemData)
 const dayMs = dayItemData.dt * 1000 ;
 const weekdayNumber = new Date(dayMs).getDay();
+
+const arrowRotation = {
+    transform: [{ rotate: `${dayItemData.wind.deg}deg` }]
+  };
   return (
      <LinearGradient
                 colors={weatherOptions[condition].gradient}
@@ -47,10 +51,17 @@ const weekdayNumber = new Date(dayMs).getDay();
                              <Text style={styles.text}>Pressure: {dayItemData.main.pressure} hPa</Text>
                              <Text style={styles.text}>Cloud Coverage: {dayItemData.clouds.all}%</Text>
                              <Text style={styles.text}>Wind Speed: {dayItemData.wind.speed} m/s</Text>
+                            <View style={styles.windDirection}>
+                             <Text style={styles.windDirectionText}>Wind Direction: {dayItemData.wind.deg}{'\u00b0'}
 
-                             <Text style={styles.text}>Wind Direction: {dayItemData.wind.deg}{'\u00b0'}</Text>
-
-
+                             </Text>
+                             <MaterialCommunityIcons
+                                       style={[arrowRotation]} // Applying the rotation style
+                                       name="arrow-up-circle"
+                                       size={35}
+                                       color="#fff"
+                                     />
+                            </View>
                         </View>
 
 
@@ -171,8 +182,20 @@ const styles = new StyleSheet.create({
         borderBottomWidth: 1,
         borderColor: "#63468f"
     },
-    arrowStyle:{
-//        transform: [{ rotate: `${dayItemData.wind.deg}deg` }]
+    windDirection: {
+//                      backgroundColor: '#7b5a9458',
+                      borderBottomWidth: 1,
+                      borderColor: '#63468f',
+
+                      alignItems: 'center',
+                      justifyContent: 'start',
+
+                      flexDirection: "row"
+                    },
+    windDirectionText:{
+         color: "#fff",
+         fontSize: 18,
+         marginRight: 5
     }
 
 })

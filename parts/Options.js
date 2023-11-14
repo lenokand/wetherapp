@@ -28,7 +28,7 @@ const weatherOptions = {
         advice: "Be cautious when driving in misty conditions."
     },
     Smoke:{
-        iconName:"weather-partly-rainy",
+        iconName:"smoke",
         gradient:['#7f7fd5', '#86a8e7', '#91eae4'],
         advice: "Poor air quality due to smoke. Stay indoors if possible."
     },

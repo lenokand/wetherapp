@@ -6,7 +6,10 @@
     "start": "expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
-    "web": "expo start --web"
+    "web": "expo start --web",
+    "build": "eas build -p android",
+    "buildapk":"eas build -p android --profile preview",
+    "submit":"eas submit --platform android"
   },
   "dependencies": {
     "@expo/webpack-config": "^19.0.0",
